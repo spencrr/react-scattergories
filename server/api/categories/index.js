@@ -31,31 +31,8 @@ router.get("/:sessionId", getSession());
 
 router.post("/:sessionId", getSession({ update: true }));
 
-const handleConnection = (before) => ({ sessionId }, ack) => {
-  before({ sessionId });
-  ack({ sessionId });
-};
-
 const updateCategories = (sessionId) => {
   db[sessionId] = refresh();
 };
 
-module.exports = (io) => {
-  io.on("connection", (socket) => {
-    socket.on(
-      "join",
-      handleConnection(({ sessionId }) => {
-        socket.join(`${sessionId}`);
-      })
-    );
-
-    socket.on(
-      "reset",
-      handleConnection(({ sessionId }) => {
-        updateCategories(sessionId);
-        socket.to(`${sessionId}`).emit("updated", { sessionId });
-      })
-    );
-  });
-  return router;
-};
+module.exports = { categoryAPI: router, updateCategories };
