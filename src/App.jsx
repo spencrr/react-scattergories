@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
-import Category from "./components/Category";
+import CategoryList from "./components/CategoryList";
 
 import axios from "axios";
 import io from "socket.io-client";
@@ -39,9 +39,7 @@ export default function App() {
     <div>
       <Header />
       <Letter letter={gameState.letter} />
-      {gameState.categories?.map((category, index) => {
-        return <Category key={index} category={category} />;
-      })}
+      <CategoryList categories={gameState.categories} />
       <button onClick={handleButton}>New Categories</button>
       <form onSubmit={handleJoinSession}>
         <input type="text" name="sessionId" />
