@@ -22,7 +22,7 @@ let db = {};
 const getSession = ({ update = false } = {}) => (req, res) => {
   const { sessionId } = req.params;
   if (update || !db[sessionId]) {
-    db[sessionId] = refresh();
+    updateCategories(sessionId);
   }
   res.send(db[sessionId]);
 };
@@ -31,9 +31,31 @@ router.get("/:sessionId", getSession());
 
 router.post("/:sessionId", getSession({ update: true }));
 
-module.exports = {
-  api: router,
-  updateCategories(sessionId) {
-    db[sessionId] = refresh();
-  },
+const handleConnection = (before) => ({ sessionId }, ack) => {
+  before({ sessionId });
+  ack({ sessionId });
+};
+
+const updateCategories = (sessionId) => {
+  db[sessionId] = refresh();
+};
+
+module.exports = (io) => {
+  io.on("connection", (socket) => {
+    socket.on(
+      "join",
+      handleConnection(({ sessionId }) => {
+        socket.join(`${sessionId}`);
+      })
+    );
+
+    socket.on(
+      "reset",
+      handleConnection(({ sessionId }) => {
+        updateCategories(sessionId);
+        socket.to(`${sessionId}`).emit("updated", { sessionId });
+      })
+    );
+  });
+  return router;
 };
