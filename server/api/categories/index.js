@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const createCategories = require("../../utils/createCategories")(10);
+const createCategories = require("../../utils/createCategories")(12);
 const getLetter = require("../../utils/getLetter");
 
 const refresh = () => ({
