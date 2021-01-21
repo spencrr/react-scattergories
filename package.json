@@ -1,0 +1,9 @@
+{
+  "name": "react-scattergories",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "cd server && npm i && npm run start",
+    "build": "cd client && npm i && npm run build"
+  },
+  "homepage": "https://github.com/spencrr/react-scattergories"
+}
