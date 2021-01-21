@@ -19,9 +19,11 @@ git clone "github.com/spencrr/react-scattergories"
 
 cd react-scattergories
 
+cd client
 npm install
-
 npm run build
 
+cd ../server
+npm install
 npm run start
 ```
