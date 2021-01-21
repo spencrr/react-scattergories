@@ -1,11 +1,3 @@
-const httpProxy = require("http-proxy");
-
-const serverPort = process.env.PORT || 5000;
-
-const proxy = httpProxy.createServer({
-    target: `http://localhost:${serverPort}/`,
-});
-
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
     buildOptions: {
@@ -30,10 +22,4 @@ module.exports = {
             },
         ],
     ],
-    routes: [
-        {
-            src: "/api/.*",
-            dest: (req, res) => proxy.web(req, res),
-        },
-    ],
-};
+} ;
