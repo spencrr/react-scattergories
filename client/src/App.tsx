@@ -5,12 +5,11 @@ import {
   AppBar,
   Box,
   Button,
-  createMuiTheme,
   Grid,
   TextField,
   Toolbar,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 
 import CategoryList from "./components/CategoryList";
 import { GameState } from "./types";
@@ -55,13 +54,13 @@ export default function App() {
         </Toolbar>
       </AppBar>
       <form onSubmit={handleJoinSession}>
-        <Grid container direction="row" justify="center">
+        <Grid container direction="row" justifyContent="center">
           <Grid
             item
             md={6}
             container
             direction="column"
-            justify="space-between"
+            justifyContent="space-between"
             alignItems="center"
           >
             <Box m={3}>
@@ -82,14 +81,14 @@ export default function App() {
             md={6}
             container
             direction="row"
-            justify="center"
+            justifyContent="center"
             alignItems="stretch"
           >
             <Grid
               item
               container
               direction="column"
-              justify="space-between"
+              justifyContent="space-between"
               alignItems="center"
             >
               <Grid item>
