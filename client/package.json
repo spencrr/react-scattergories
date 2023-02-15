@@ -9,7 +9,10 @@
   "dependencies": {
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
-    "@material-ui/core": "^4.11.2",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.9",
+    "@mui/styles": "^5.11.9",
     "@snowpack/plugin-babel": "^2.1.6",
     "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
